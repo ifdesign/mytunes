@@ -1,0 +1,73 @@
+# The location of the `mp4tag` command binary
+# Download it from https://www.bento4.com/downloads/
+mp4tag-cmd: /path/to/mp4tag/binary
+
+# The iTunes Library XML file.
+lib: /path/to/itunes/library.xml
+
+# The output folder where to write the renamed files.
+out: /path/to/my/music/library
+
+roots:
+  - /path/to/my/music/libraries/1
+  - /path/to/my/music/libraries/2
+
+extract-playlist: /path/to/my/library/playlist.m3u8
+extract-out: /path/to/my/phone/sd/card
+
+# The file name pattern.
+# Place optional placeholders inside brakcets []
+# Escape [ and ] with \\[ resp. \\]
+# Available fields:
+# - %artist
+# - %albumArtist
+# - %title
+# - %feat
+# - %mix
+# - %genre
+# - %style
+# - %year
+# - %album
+# - %trackNumber
+# - %rating
+# - %grouping
+# - %comments
+# - %extension
+filename: "%genre/[%albumArtist - %album/]%artist - [(%trackNumber) ]%title[ ft %feat][ (%mix)]%extension"
+
+# The playlists to get the items from.
+playlists:
+  - Purchased
+  - Import
+
+# The genres all items must fit in.
+# Test regexp here: https://regex-golang.appspot.com/assets/html/index.html
+# iTunes genres appendix: https://affiliate.itunes.apple.com/resources/documentation/genre-mapping/
+# iTunes genres appendix json: http://itunes.apple.com/WebObjects/MZStoreServices.woa/ws/genres
+genres:
+  - Classical: (?i)classical
+  - Children: (?i).*children.*
+  - Drum & Bass: (?i).*Drum(’n’|\s?&\s?)bass
+  - Dubstep: (?i).*dubstep.*
+  - Electronica: (?i).*electronic.*
+  - Blues, Funk, Soul: (?i).*blues.*|.*funk.*|.*soul.*
+  - Hip Hop: (?i)hip[\s-]hop.*|.*rap|dirty south
+  - House+Techno: (?i)dance|.*house.*|.*techno.*
+  - Jazz: (?i)jazz
+  - Latino: (?i).*latin[o]?.*| raíces|.*reggaeton.*|.*salsa.*|.*mexicano.*|.*baladas.*
+  - Variété: (?i)french pop
+  - Pop: (?i).*pop
+  - Reggae: (?i).*reggae|dancehall|.*dub|ska
+  - Rock: (?i).*rock.*|grunge|new wave|punk|adult alternative|british invasion|.*metal.*|jam bands|psychedelic|songwriter|surf|tex-mex
+  - World: (?i)world
+
+# The threshold above which files are grouped in an album folder.
+album-threshold: 0.6
+minimum-album-tracks: 5
+
+# The artist for compilation abums
+compilation-artist: VA
+
+# True for using universal rating system: <0-5>* in the `Grouping` field
+# => Will be written as Finder tag in macOS
+use-universal-rating: true
